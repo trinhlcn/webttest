@@ -29,7 +29,10 @@
        var _portalId = "561236459"; // Portal DEMO 
        var _propId = "564990668"; // https://trinhlcn.github.io/webttest/ 
         var _ATM_TRACKING_ASSOCIATE_UTM = 1 ; // https://trinhlcn.github.io/webttest/ 
-        var _cdp365Analytics = { default_event = 0, first_party_domain: ".trinhlcn.github.io" };  
+        var _cdp365Analytics = { 
+           default_event: 0,
+           first_party_domain: ".tpiland.com",
+         }; 
 
     (function() {
         var w = window;
@@ -46,14 +49,6 @@
         t.parentNode.insertBefore(e, t)
     })(); </script>
     <!-- End of CDP Web Insight script -->
-   <script type="text/javascript">
-  web_event.track("pageview", "view",{
-    extra: {
-      page_type: "home",
-      page_category:  "Home",
-    }
-  });
-</script>
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -61,6 +56,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-PSB83RJ2');</script>
 <!-- End Google Tag Manager -->
+    <script type="text/javascript">
+      web_event.track("pageview", "view",{
+        extra: {
+          page_type: "home",
+          page_category:  "Home",
+        }
+      });
+    </script>
 </head>
 
 <body>
@@ -68,6 +71,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSB83RJ2"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+    
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-2 px-xl-5">
