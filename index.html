@@ -23,9 +23,29 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    
     <!-- CDP Web Insight script -->
-    <script type = "text/javascript" >
+<script type = "text/javascript" >
+   var _portalId = "561236459"; // Portal myberyl  
+   var _propId = "564990668"; 
+   var _ATM_TRACKING_ASSOCIATE_UTM = 1 ; // https://myberyl.com/
+  var _cdp365Analytics = { first_party_domain: ".trinhlcn.github.io" };  
+(function() {
+    var w = window;
+    if (w.web_event) return;
+    var a = window.web_event = function() {
+        a.queue.push(arguments);
+    }
+    a.propId = _propId;
+    a.track = a;
+    a.queue = [];
+    var e = document.createElement("script");
+    e.type = "text/javascript", e.async = !0, e.src = "//st-a.cdp.asia/insight.js";
+    var t = document.getElementsByTagName("script")[0];
+    t.parentNode.insertBefore(e, t)
+})(); </script>
+<!-- End of CDP Web Insight script -->
+    <!-- CDP Web Insight script -->
+<!--     <script type = "text/javascript" >
        var _portalId = "561236459"; // Portal DEMO 
        var _propId = "564990668"; // https://trinhlcn.github.io/webttest/ 
         var _ATM_TRACKING_ASSOCIATE_UTM = 1 ; // https://trinhlcn.github.io/webttest/ 
@@ -47,7 +67,7 @@
         e.type = "text/javascript", e.async = !0, e.src = "//st-a.cdp.asia/insight.js";
         var t = document.getElementsByTagName("script")[0];
         t.parentNode.insertBefore(e, t)
-    })(); </script>
+    })(); </script> -->
     <!-- End of CDP Web Insight script -->
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -139,13 +159,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         type: 'variable',
         selector: 'web_event',
         callback: function (web_event) {
-          web_event.track("pageview", "view",{
-                extra: {
-                  page_type: "home",
-                  page_category:  "Home",
-                }
-              });
-            }
+          // web_event.track("pageview", "view",{
+          //       extra: {
+          //         page_type: "home",
+          //         page_category:  "Home",
+          //       }
+          //     });
+          //   }
+    var _cdp365Analytics = window._cdp365Analytics  || {};
+    _cdp365Analytics.default_event = 0; // Enable send pageview manually
+  
+    _cdp365Analytics.page = {
+        "page_type": "Home", // current page type
+        "page_category": "Unknown" // current page category
+    };
+    web_event.track("pageview", "view");
       });
     </script>
 </head>
