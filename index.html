@@ -57,14 +57,96 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-PSB83RJ2');</script>
 <!-- End Google Tag Manager -->
     <script type="text/javascript">
-  var _cdp365Analytics = window._cdp365Analytics  || {};
-  _cdp365Analytics.default_event = 0; // Enable send pageview manually
-
-  _cdp365Analytics.page = {
-      "page_type": "home", // current page type
-      "page_category": "Home" // current page category
-  };
-  web_event.track("pageview", "view");
+        function waitForElement(params) {
+    try {
+      var selector = params.selector;
+      var root;
+      var interval = params.interval || 500;
+      var loop = params.loop || 10;
+      var mode = params.mode || "single"; // mode: single | multiple
+      var type = params.type || "element"; // type: element | variable | xpath
+      var callback = params.callback;
+      if (typeof selector != "string") {
+        return 0;
+      }
+      var counter = 0;
+      var interval = setInterval(function () {
+        try {
+          counter++;
+          var el;
+          switch (type) {
+            case "element": {
+              root = params.root || document;
+              el = root.querySelector(selector);
+              break;
+            }
+            case "variable": {
+              root = params.root || window;
+              el = root[selector];
+              break;
+            }
+            case "xpath": {
+              root = params.root || document;
+              el = document.evaluate(selector, root, null, XPathResult.ANY_TYPE, null);
+              break;
+            }
+          }
+          if (el) {
+            if (typeof callback == "function") {
+              if (mode == "multiple") {
+                switch (type) {
+                  case "element": {
+                    el = root.querySelectorAll(selector);
+                    break;
+                  }
+                  case "xpath": {
+                    var array = [];
+                    var iterate = el.iterateNext();
+                    while (iterate) {
+                      array = array.push(iterate);
+                      iterate = el.iterateNext();
+                    }
+                    el = array;
+                    break;
+                  }
+                }
+              } else {
+                switch (type) {
+                  case "xpath": {
+                    el = el.iterateNext();
+                    break;
+                  }
+                }
+              }
+              callback(el);
+            }
+            clearInterval(interval);
+          }
+          if (counter > loop) {
+            clearInterval(interval);
+          }
+        } catch (ex) {
+          web_event.track("error", "tracking", { extra: {message: ex.message, stack: ex.stack} });
+        }
+      }, interval);
+      return 1;
+    } catch (ex) {
+      web_event.track("error", "tracking", { extra: {message: ex.message, stack: ex.stack} });
+      return 0;
+    }
+  }
+        waitForElement({
+        type: 'variable',
+        selector: 'web_event',
+        callback: function (web_event) {
+          web_event.track("pageview", "view",{
+                extra: {
+                  page_type: "home",
+                  page_category:  "Home",
+                }
+              });
+            }
+      });
     </script>
 </head>
 
